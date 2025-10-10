@@ -1,5 +1,8 @@
 package hello.core.lifecycle;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 public class NetworkClient {
 
     private String url;
@@ -27,6 +30,7 @@ public class NetworkClient {
     }
 
     // 의존관계 주입이 끝나면 호출
+    @PostConstruct
     public void init() throws Exception {
         System.out.println("NetworkClient.init");
         connect();
@@ -34,6 +38,7 @@ public class NetworkClient {
     }
 
     // 빈이 종료될때 호출
+    @PreDestroy
     public void close() throws Exception {
         System.out.println("NetworkClient.close");
         disconnect();
